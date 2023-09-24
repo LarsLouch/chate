@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+    <title>Home - Controle de gastos</title>
+
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="chat.css">
+</head>
+<body>
+        <section class="bg">
+            <style> img{ height: 200px; width: 200px; border: 2px solid black;}</style>
+            <ul class="ms" id="messages"></ul>
+            <form onsubmit="return sendMessage()">
+                <input id="message" class="messagem" placeholder="Enter message" autocomplete="off">
+                <input type="submit" class="messagem" >
+            </form>
+        </section>
+    
+<link rel="stylesheet" href="../../global.css">
+
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-storage-compat.js"></script>
+   <script id MainScript>
+
+
+    var firebaseConfig = {
+        apiKey: "AIzaSyCfWbmzTVh_5JauVELixYb0db7MTaFyKrA",
+        authDomain: "projeto-test-56c9b.firebaseapp.com",
+        databaseURL: "https://projeto-test-56c9b-default-rtdb.firebaseio.com",
+        projectId: "projeto-test-56c9b",
+        storageBucket: "projeto-test-56c9b.appspot.com",
+        messagingSenderId: "1030194470961",
+        appId: "1:1030194470961:web:4bc4f8346a719d2662b510"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+   var myName = prompt("Enter your name");
+   
+   function sendMessage() {
+    var message = document.getElementById("message").value;
+    firebase.database().ref("messages").push().set({
+        "displayName": myName,
+        "message": message
+    });
+    
+    return false;
+   }
+   firebase.database().ref("messages").on("child_added", function (snapshot) {
+    var html = "<div class='borda'>";
+        if(snapshot.val().displayName == myName) {
+            html += "<li class='centralize' id='message-" + snapshot.key + "'>";
+            html += "<button data-id'message-" + snapshot.key + "' onclick='deleteMessage(this);'>"
+                ;
+                html += "Delete";
+            html += "</button>";
+
+            
+            html += snapshot.val().message;
+        html += "</li>"
+        }else {
+            html += "<li class='esquerda' id='message-" + snapshot.key + "'>";
+            html += snapshot.val().displayName + ":" + snapshot.val().message;
+        }html += "</li></div><br>"
+       
+
+    document.getElementById("messages").innerHTML += html;
+   });
+
+   function deleteMessage(seld) {
+    var messageId = seld.getAttribute("data-id");
+
+    firebase.database().ref("messages").child(messageId).remove();
+   }
+
+    firebase.database().ref("messages").on("child_removed", function (snapshot) {
+        document.getElementById("message-" + snapshot.key).innerHTML = "A mensagem foi removida";
+    });
+
+</script>
+
+
+</body>
+</html>

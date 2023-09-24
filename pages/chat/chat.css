@@ -1,0 +1,94 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 100px;
+  padding: 100px;
+  overflow: hidden;
+}
+
+
+section {
+    float:left;
+    overflow-y: auto;
+    height: 400px;
+}
+
+.bg {
+    border: 20px solid transparent;
+    border-color: blueviolet;
+    top: 300px;
+    left: 20px;
+    right: 20px;
+    width: 400px;
+}
+
+img { 
+    position:relative;
+    top: 160px;
+    left: 550px;
+    height: 200px; 
+    width: 200px; 
+    border-top: 50px solid transparent;
+    border-bottom: 50px solid transparent;
+    background-color: rgb(255, 255, 255);
+    border-image: url("") 300 round;
+    border-radius: 120px 120px 120px 120px;
+    z-index: 1;
+}
+
+.messagem {
+    z-index: 1;
+}
+
+.borda {
+    position: block;
+    border: 1px solid transparent;
+    background-color: rgb(2, 255, 6);
+    border-color: rgb(10, 10, 10);
+    z-index: 0;
+}
+
+.alinhaEsquerda {
+    padding: 10px;
+    width: calc(36% - 20px);
+    -webkit-text-size-adjust: large;
+}
+
+
+
+
+.centralize {
+    display: flex;
+    justify-content: right;
+    align-items: right;
+}
+
+.esquerda {
+    position: block;
+    justify-content: left;
+    align-items: left;
+    list-style-type: none;
+}
+
+button {
+    opacity: 0;
+}
+
+button:hover {
+    opacity: 0.6;
+}
+
+
+p {
+    margin: 7px 0;
+}
+
+img {
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+img:active {
+    opacity: 0.2;
+}

@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+    <title>Home - Controle de gastos</title>
+
+    <meta charset="UTF-8">
+   </head>
+
+<body>
+   <header>
+    <button type="button" class="clear" onclick="logout()">Sair</button>
+   </header>
+   <section>
+   <p id="retrieve"></p>
+   <a href="file:///G:/site/log/pages/Perfil_Imgs/upload.html">
+    <img id="myimg" type="button"/></a><br><br>
+    <label id="UpProgress"></label><br><br>
+    </section>
+    <ul data-js="games-list"></ul>
+   <div class="alinhaEsquerda"><ol id="transactions"></ol></div><br>
+
+   <div><ol id="transaction"></ol></div>
+   <div><ol id="admin"></ol></div>
+  
+   <button class="fab fixed bottom right" onclick="newTransaction()">+</button>
+
+   
+</body>
+
+
+<link rel="stylesheet" href="../../global.css">
+<link rel="stylesheet" href="home.css">
+<script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-storage-compat.js"></script>
+<script src="../../firebase-init.js"></script>
+<script src="../../auth-guard.js"></script>
+<script src="../../loading.js"></script>
+<script src="home.js"></script>
+
+
+<script>
+
+        setTimeout(function(){
+    
+            var user = firebase.auth().currentUser.uid;
+        
+            if(document.getElementById('retrieve')) {
+                firebase.database().ref('Pictures/'+user).on('value', function(snapshot) {
+                    document.getElementById('myimg').src = snapshot.val().Link;
+                });
+            }
+        },5000);
+    </script>
+</html>

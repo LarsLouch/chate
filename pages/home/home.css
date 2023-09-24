@@ -1,0 +1,80 @@
+body {
+    height: 100vh;
+}
+
+section {
+    background-image: url("../../Images/fundo.png");
+    height: 50vh;
+    width: 170vh;
+}
+
+img { 
+    position:relative;
+    top: 160px;
+    left: 550px;
+    height: 200px; 
+    width: 200px; 
+    border-top: 50px solid transparent;
+    border-bottom: 50px solid transparent;
+    background-color: rgb(255, 255, 255);
+    border-image: url("") 300 round;
+    border-radius: 120px 120px 120px 120px;
+    z-index: 1;
+}
+
+.alinhaEsquerda {
+    padding: 10px;
+    width: calc(36% - 20px);
+    -webkit-text-size-adjust: large;
+}
+
+ol {
+    list-style-type:lower-alpha;
+    padding: 0;
+}
+
+ol li {
+    cursor: pointer;
+    background: white;
+    padding: 34px 34px;
+    border-bottom: 3px solid rgb(98, 98, 98);
+
+}
+
+
+ol li:hover {
+    opacity: 0.8;
+}
+
+ol li.expense {
+    border-left: 30px solid red;
+}
+
+ol li.income {
+    border-left: 30px solid rgb(0, 251, 0);
+}
+
+ol li:hover button.danger {
+    display: block;
+}
+
+
+
+button.danger {
+    width: auto;
+    float: right;
+    display: none;
+}
+
+p {
+    margin: 7px 0;
+}
+
+img {
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+img:active {
+    opacity: 0.2;
+}
